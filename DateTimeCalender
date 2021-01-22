@@ -50,7 +50,7 @@ TimePickerDialog nTime = new TimePickerDialog(this, R.style.datepicker, (view, h
                 myCalendar.set(Calendar.MINUTE, minte);
 
 
-                String myFormat = "hh.MM a";
+                String myFormat = "hh.mm a";
                 SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
                 binding.inputTime.setText(sdf.format(myCalendar.getTime()));
             }, hour, minte, false);
