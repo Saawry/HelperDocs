@@ -1,0 +1,54 @@
+//Requires Android O,Api 26
+
+LocalDateTime now = LocalDateTime.now();
+int year = now.getYear();
+int month = now.getMonthValue();
+int day = now.getDayOfMonth();
+int hour = now.getHour();
+int minute = now.getMinute();
+int second = now.getSecond();
+int millis = now.get(ChronoField.MILLI_OF_SECOND); // Note: no direct getter available.
+
+System.out.printf("%d-%02d-%02d %02d:%02d:%02d.%03d", year, month, day, hour, minute, second, millis);
+
+//or----------
+Calendar now = Calendar.getInstance();
+int year = now.get(Calendar.YEAR);
+int month = now.get(Calendar.MONTH) + 1; // Note: zero based!
+int day = now.get(Calendar.DAY_OF_MONTH);
+int hour = now.get(Calendar.HOUR_OF_DAY);
+int minute = now.get(Calendar.MINUTE);
+int second = now.get(Calendar.SECOND);
+int millis = now.get(Calendar.MILLISECOND);
+
+System.out.printf("%d-%02d-%02d %02d:%02d:%02d.%03d", year, month, day, hour, minute, second, millis);
+
+//Date and Time Picker
+
+
+Calendar now = Calendar.getInstance();
+
+TimePickerDialog nTime = new TimePickerDialog(this, R.style.datepicker, (view, hourOfDay, minute) -> {
+                myCalendar.set(Calendar.HOUR_OF_DAY, hour);
+                myCalendar.set(Calendar.MINUTE, minte);
+
+
+                String myFormat = "hh.MM a";
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                binding.inputTime.setText(sdf.format(myCalendar.getTime()));
+            }, hour, minte, false);
+            nTime.show();
+
+DatePickerDialog nDate = new DatePickerDialog(this, R.style.datepicker, (DatePickerDialog.OnDateSetListener) (view, year, month, dayOfMonth) -> {
+                myCalendar.set(Calendar.YEAR, yr);
+                myCalendar.set(Calendar.MONTH, mnth);
+                myCalendar.set(Calendar.DAY_OF_MONTH, day);
+                String myFormat = "dd.MM.yyyy";
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+                binding.inputDate.setText(sdf.format(myCalendar.getTime()));
+
+
+                binding.inputDate.setText(sdf.format(myCalendar.getTime()));
+            }, yr, mnth, day);
+            nDate.show();
